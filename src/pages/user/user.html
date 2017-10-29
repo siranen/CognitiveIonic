@@ -1,0 +1,38 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Users</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <div class="spinner" *ngIf="loadding"></div>
+  <ion-list>
+    <ion-item-sliding #item *ngFor="let user of users | async">
+      <button ion-item (tap)="detailUser(user.$key)">
+        <ion-avatar item-left>
+          <img src="{{ user.imagenURL }}" >
+        </ion-avatar>
+        <h2>{{ user.name }}</h2>
+        <h3>{{ user.username }}</h3>
+        <p>{{ user.email }}</p>
+      </button>
+
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="deleteConfirm(user)">
+          <ion-icon name="trash"></ion-icon>
+          Eliminar
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <!-- <button ion-button (click)="preCamera()">CAMERA</button> -->
+
+  <ion-fab bottom right>
+    <button ion-fab (tap)="NewUser()" ><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+
+</ion-content>
+

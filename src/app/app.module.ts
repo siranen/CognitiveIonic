@@ -1,0 +1,79 @@
+
+
+import { NgModule, ErrorHandler } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { MyApp } from './app.component';
+import { HttpModule } from '@angular/http';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { config } from './app.config.samples';
+
+import { UserPage } from '../pages/user/user';
+import { AnalysePage } from '../pages/analyse/analyse';
+import { TabsPage } from '../pages/tabs/tabs';
+import { NewUserPage } from '../pages/new-user/new-user';
+import { AddPhotoPage } from '../pages/add-photo/add-photo';
+import { DetailUserPage } from '../pages/detail-user/detail-user';
+import { VerificationRostroPage } from './../pages/verification/verification';
+
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { Camera } from '@ionic-native/camera';
+import { CameraPreview } from '@ionic-native/camera-preview'
+import { Crop } from '@ionic-native/crop'
+import { File } from '@ionic-native/file';
+import { FileTransfer } from '@ionic-native/file-transfer';
+import { UploadfilesProvider } from '../providers/uploadfiles/uploadfiles';
+import { UserProvider } from '../providers/user/user';
+import { ApifaceProvider } from '../providers/apiface/apiface';
+
+import { PipesModule } from '../pipes/pipes.module';
+import { VerificationProvider } from '../providers/verification/verification';
+
+@NgModule({
+  declarations: [
+    MyApp,
+    UserPage,
+    AnalysePage,
+    TabsPage,
+    NewUserPage,
+    AddPhotoPage,
+    DetailUserPage,
+    VerificationRostroPage
+  ],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(MyApp),
+    HttpModule,
+    AngularFireModule.initializeApp(config.firebaseConfig),
+    AngularFireDatabaseModule,
+    PipesModule
+  ],
+  bootstrap: [IonicApp],
+  entryComponents: [
+    MyApp,
+    UserPage,
+    AnalysePage,
+    TabsPage,
+    NewUserPage,
+    AddPhotoPage,
+    DetailUserPage,
+    VerificationRostroPage
+  ],
+  providers: [
+    StatusBar,
+    SplashScreen,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Camera,
+    CameraPreview,
+    Crop,
+    File,
+    FileTransfer,
+    UploadfilesProvider,
+    UserProvider,
+    ApifaceProvider,
+    VerificationProvider
+  ]
+})
+export class AppModule {}
